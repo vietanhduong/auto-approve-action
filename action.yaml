@@ -1,0 +1,26 @@
+name: Auto Approve
+description: Auto-approve pull requests
+inputs:
+  github-token:
+    description: "GitHub token"
+    required: true
+  version:
+    description: "Auto-Approve binary version"
+    required: false
+    default: "latest"
+runs:
+  using: "composite"
+  steps:
+    - name: Install GitHub Path
+      shell: bash
+      run: echo "$GITHUB_ACTION_PATH/scripts" >> $GITHUB_PATH
+
+    - name: Install auto-approve
+      shell: bash
+      run: install-auto-approve.sh
+      env:
+        VERSION: ${{ inputs.version }}
+
+    - name: Echo version
+      shell: bash
+      run: auto-approve --version

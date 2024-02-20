@@ -1,0 +1,14 @@
+name: Test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test action
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: vietanhduong/auto-approve-action@feat/init
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}

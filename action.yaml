@@ -8,6 +8,18 @@ inputs:
     description: "Auto-Approve binary version (default: v0.0.1)."
     required: false
     default: "v0.0.1"
+  comment-body:
+    description: "Approve Pull Request with comment"
+    required: false
+    default: "Auto Approved"
+  pr-number:
+    description: "Pull Request Number"
+    required: true
+    default: "0"
+  install-only:
+    description: "Install auto-approve only"
+    required: false
+    default: "false"
 runs:
   using: "composite"
   steps:
@@ -21,6 +33,11 @@ runs:
       env:
         VERSION: ${{ inputs.version }}
 
-    - name: Echo version
+    - name: Submit Approve
+      if: ${{ inputs.install-only }} == 'false'
       shell: bash
-      run: auto-approve --help
+      run: auto-approve --pr "$PR_NUMBER" --comment "$COMMENT_BODY"
+      env:
+        PR_NUMBER: ${{ inputs.pr-number }}
+        GH_TOKEN: ${{ inputs.github-token }}
+        COMMENT_BODY: ${{ inputs.comment-body }}

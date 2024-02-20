@@ -11,5 +11,5 @@ jobs:
 
       - uses: vietanhduong/auto-approve-action@feat/init
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GH_PAT }}
           pr-number: "1"

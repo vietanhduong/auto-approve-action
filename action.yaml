@@ -36,7 +36,7 @@ runs:
     - name: Submit Approve
       if: ${{ inputs.install-only }} == 'false'
       shell: bash
-      run: auto-approve --pr "$PR_NUMBER" --comment "$COMMENT_BODY"
+      run: auto-approve --pr "$PR_NUMBER" --comment "$COMMENT_BODY" --github-log-format
       env:
         PR_NUMBER: ${{ inputs.pr-number }}
         GH_TOKEN: ${{ inputs.github-token }}

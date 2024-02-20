@@ -5,15 +5,15 @@ inputs:
     description: "GitHub token"
     required: true
   version:
-    description: "Auto-Approve binary version"
+    description: "Auto-Approve binary version (default: v0.0.1)."
     required: false
-    default: "latest"
+    default: "v0.0.1"
 runs:
   using: "composite"
   steps:
     - name: Install GitHub Path
       shell: bash
-      run: echo "$GITHUB_ACTION_PATH/scripts" >> $GITHUB_PATH
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
 
     - name: Install auto-approve
       shell: bash
@@ -23,4 +23,4 @@ runs:
 
     - name: Echo version
       shell: bash
-      run: auto-approve --version
+      run: auto-approve --help

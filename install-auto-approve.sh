@@ -23,7 +23,7 @@ RUNNER_ARCH="${RUNNER_ARCH:-$(uname -m)}"
 RUNNER_ARCH="$(echo "$RUNNER_ARCH" | tr '[:upper:]' '[:lower:]')"
 TARGET_ARCH="amd64"
 case "$RUNNER_ARCH" in
-x86_64 | amd64)
+x86_64 | amd64 | x64)
   TARGET_ARCH="amd64"
   ;;
 aarch64 | arm64)
@@ -43,4 +43,4 @@ fi
 
 echo "::debug::Download auto-approve URL: $DOWNLOAD_URL"
 
-curl -SL $DOWNLOAD_URL | tar -xvz -C /tmp auto-approve && sudo mv /tmp/auto-approve /usr/local/bin/auto-approve
+curl -sSL $DOWNLOAD_URL | tar -xz -C /tmp auto-approve && sudo mv /tmp/auto-approve /usr/local/bin/auto-approve

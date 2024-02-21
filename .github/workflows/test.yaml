@@ -13,3 +13,6 @@ jobs:
         with:
           github-token: ${{ secrets.GH_PAT }}
           pr-number: "1"
+          comment-body: |
+            # Auto Approved
+            ## This PR has been approved by the auto-approve-action

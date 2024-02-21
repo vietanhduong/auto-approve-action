@@ -5,9 +5,9 @@ inputs:
     description: "GitHub token"
     required: true
   version:
-    description: "Auto-Approve binary version (default: v0.0.1)."
+    description: "Auto-Approve binary version (default: v0.0.2)."
     required: false
-    default: "v0.0.1"
+    default: "v0.0.2"
   comment-body:
     description: "Approve Pull Request with comment"
     required: false
@@ -36,7 +36,7 @@ runs:
     - name: Submit Approve
       if: ${{ inputs.install-only }} == 'false'
       shell: bash
-      run: auto-approve --pr "$PR_NUMBER" --comment "$COMMENT_BODY" --github-log-format
+      run: auto-approve "$PR_NUMBER" --comment "$COMMENT_BODY" --github-log-format
       env:
         PR_NUMBER: ${{ inputs.pr-number }}
         GH_TOKEN: ${{ inputs.github-token }}

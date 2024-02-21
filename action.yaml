@@ -1,4 +1,4 @@
-name: Auto Approver
+name: Auto Approve Pull Request
 description: Auto-approve pull requests
 inputs:
   github-token:

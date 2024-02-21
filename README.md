@@ -6,7 +6,7 @@ Auto Approve Pull Requests following **path** and **username** similar GitHub's 
 steps:
   - uses: actions/checkout@v4
 
-  - uses: vietanhduong/auto-approve-action@main
+  - uses: vietanhduong/auto-approve-action@v0
     with:
       github-token: ${{ secrets.GH_PAT }} # BOTs Token
       pr-number: "1"

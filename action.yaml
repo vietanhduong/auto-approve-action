@@ -1,5 +1,8 @@
 name: Auto Approve Pull Request
 description: Auto-approve pull requests
+branding:
+  icon: git-pull-request
+  color: green
 inputs:
   github-token:
     description: "GitHub token"

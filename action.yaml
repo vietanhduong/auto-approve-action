@@ -1,0 +1,43 @@
+name: Auto Approve
+description: Auto-approve pull requests
+inputs:
+  github-token:
+    description: "GitHub token"
+    required: true
+  version:
+    description: "Auto-Approve binary version (default: v0.0.2)."
+    required: false
+    default: "v0.0.2"
+  comment-body:
+    description: "Approve Pull Request with comment"
+    required: false
+    default: "Auto Approved"
+  pr-number:
+    description: "Pull Request Number"
+    required: true
+    default: "0"
+  install-only:
+    description: "Install auto-approve only"
+    required: false
+    default: "false"
+runs:
+  using: "composite"
+  steps:
+    - name: Install GitHub Path
+      shell: bash
+      run: echo "$GITHUB_ACTION_PATH" >> $GITHUB_PATH
+
+    - name: Install auto-approve
+      shell: bash
+      run: install-auto-approve.sh
+      env:
+        VERSION: ${{ inputs.version }}
+
+    - name: Submit Approve
+      if: ${{ inputs.install-only }} == 'false'
+      shell: bash
+      run: auto-approve "$PR_NUMBER" --comment "$COMMENT_BODY" --github-log-format
+      env:
+        PR_NUMBER: ${{ inputs.pr-number }}
+        GH_TOKEN: ${{ inputs.github-token }}
+        COMMENT_BODY: ${{ inputs.comment-body }}

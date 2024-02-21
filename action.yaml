@@ -5,9 +5,9 @@ inputs:
     description: "GitHub token"
     required: true
   version:
-    description: "Auto-Approve binary version (default: v0.0.2)."
+    description: "Auto-Approve binary version (default: v0.1.0)."
     required: false
-    default: "v0.0.2"
+    default: "v0.1.0"
   comment-body:
     description: "Approve Pull Request with comment"
     required: false
